@@ -151,3 +151,45 @@ window.addEventListener('keydown', e => {
             break;
     }
 });
+// Touch event handling for mobile devices
+let touchStartX = 0;
+let touchStartY = 0;
+
+window.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+});
+
+window.addEventListener('touchmove', e => {
+    if (!touchStartX || !touchStartY) {
+        return;
+    }
+    let touchEndX = e.touches[0].clientX;
+    let touchEndY = e.touches[0].clientY;
+
+    let diffX = touchEndX - touchStartX;
+    let diffY = touchEndY - touchStartY;
+
+    if (Math.abs(diffX) > Math.abs(diffY)) {
+        // Horizontal swipe
+        if (diffX > 0) {
+            // Swipe right
+            inputDir = { x: 1, y: 0 };
+        } else {
+            // Swipe left
+            inputDir = { x: -1, y: 0 };
+        }
+    } else {
+        // Vertical swipe
+        if (diffY > 0) {
+            // Swipe down
+            inputDir = { x: 0, y: 1 };
+        } else {
+            // Swipe up
+            inputDir = { x: 0, y: -1 };
+        }
+    }
+
+    touchStartX = 0;
+    touchStartY = 0;
+});

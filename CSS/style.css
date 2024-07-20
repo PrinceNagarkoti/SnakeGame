@@ -2,50 +2,46 @@
 *{
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
 }
 
-.body{
+.body {
     background: url("/Image/SnakeBackground.jpg"); 
     min-height: 100vh;
-    background-size: 100vw 100vh;
+    background-size: cover;
     background-repeat: no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px; /* Add padding to avoid content touching screen edges */
 }
 
-#scoreBox{
+#scoreBox, #hiscoreBox {
     position: absolute;
-    top: 9px;
-    right: 200px;
-    font-size: 39px;
+    font-size: 4vw; /* Adjust font-size using vw for responsiveness */
     font-weight: bold;
     font-family: 'New Tegomin', serif;
 }
 
-#hiscoreBox{
-    position: absolute;
-    top: 59px;
-    right: 140px;
-    font-size: 39px;
-    font-weight: bold;
-    font-family: 'New Tegomin', serif;
+#scoreBox {
+    top: 1%;
+    right: 8%;
+}
+
+#hiscoreBox {
+    top: 9%;
+    right: 6%;
 }
 
 #board {
     background: linear-gradient(rgb(74 221 74), rgb(181 181 181));
     width: 90vmin;
-    height: 92vmin;
+    height: 90vmin;
     border: 2px solid lightgreen;
-    position: absolute;
-    top: 50%;
-    right: 40%;
-    transform: translateY(-50%);
     display: grid;
     grid-template-rows: repeat(18, 1fr);
     grid-template-columns: repeat(18, 1fr);
 }
-
 
 .head {
     background: linear-gradient(rgb(240, 124, 124), rgb(228, 228, 129));
@@ -55,10 +51,9 @@
     border-radius: 9px;
 }
 
-
-.snake{
+.snake {
     background-color: rgb(61, 165, 61);
-    border: .10vmin solid rgb(8, 8, 8);
+    border: .5vmin solid rgb(8, 8, 8); /* Adjusted border size for responsiveness */
     border-radius: 12px;
 }
 
@@ -68,12 +63,32 @@
 
 .food::before {
     content: "🍎"; 
-    font-size: 20px; 
+    font-size: 2.5vw; /* Adjust font-size using vw for responsiveness */
     position: absolute;
-    top: 40%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 1; /* Ensure the emoji is above any potential content */
+    z-index: 1;
 }
 
 
+
+@media (max-width: 480px) {
+    #scoreBox{
+        font-size: 6vw;
+        top: 5%;
+        right: 10%;
+        padding-top: 2%;
+    }
+    #hiscoreBox {
+        font-size: 6vw;
+        top: 3%;
+        right: 10%;
+        
+    }
+
+    #board {
+        width: 100vmin; /* Adjust board size for very small screens */
+        height: 100vmin;
+    }
+}
